@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Count Masters - Play Free Online Stickman Running Game</title>
+    <meta name="description" content="Play Count Masters, the addictive stickman running game where you collect and multiply your crowd to overcome obstacles and reach the finish line. Free online game!">
+    <meta name="keywords" content="count masters, stickman games, running games, online games, free games, crowd games, multiplayer stickman">
+    <meta name="author" content="CountMasters.space">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://countmasters.space/">
+    <meta property="og:title" content="Count Masters - Play Free Online Stickman Running Game">
+    <meta property="og:description" content="Play Count Masters, the addictive stickman running game where you collect and multiply your crowd to overcome obstacles and reach the finish line.">
+    <meta property="og:image" content="https://countmasters.space/og-image.jpg">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://countmasters.space/">
+    <meta property="twitter:title" content="Count Masters - Play Free Online Stickman Running Game">
+    <meta property="twitter:description" content="Play Count Masters, the addictive stickman running game where you collect and multiply your crowd to overcome obstacles and reach the finish line.">
+    <meta property="twitter:image" content="https://countmasters.space/twitter-image.jpg">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://countmasters.space/">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Game",
+        "name": "Count Masters",
+        "description": "An addictive stickman running game where you collect and multiply your crowd to overcome obstacles and reach the finish line.",
+        "url": "https://countmasters.space/",
+        "gameCategory": "Action",
+        "operatingSystem": "Web Browser",
+        "applicationCategory": "Game",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        }
+    }
+    </script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #1d1d1f;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #007aff;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #1d1d1f;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #007aff;
+        }
+
+        main {
+            padding: 2rem 0;
+        }
+
+        .hero {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            color: #1d1d1f;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #007aff, #5856d6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: #86868b;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .game-container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            margin-bottom: 3rem;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .game-wrapper {
+            position: relative;
+            width: 100%;
+            height: 600px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .game-iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 12px;
+        }
+
+        .content-section {
+            background: white;
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        h2 {
+            font-size: 2rem;
+            font-weight: 600;
+            color: #1d1d1f;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -0.5rem;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: linear-gradient(90deg, #007aff, #5856d6);
+            border-radius: 2px;
+        }
+
+        .game-description {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #424245;
+            margin-bottom: 1.5rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .feature-card {
+            background: #f2f2f7;
+            padding: 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #1d1d1f;
+            margin-bottom: 0.5rem;
+        }
+
+        .feature-description {
+            font-size: 0.9rem;
+            color: #86868b;
+        }
+
+        .cta-section {
+            text-align: center;
+            padding: 3rem 0;
+            background: linear-gradient(135deg, #007aff, #5856d6);
+            color: white;
+            border-radius: 20px;
+            margin-top: 2rem;
+        }
+
+        .cta-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .cta-description {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+        }
+
+        .play-button {
+            display: inline-block;
+            background: white;
+            color: #007aff;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .play-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        footer {
+            background: #1d1d1f;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 1.5rem;
+            list-style: none;
+        }
+
+        .footer-links a {
+            color: #86868b;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .game-container {
+                padding: 1rem;
+            }
+
+            .game-wrapper {
+                height: 400px;
+            }
+
+            .content-section {
+                padding: 1.5rem;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .footer-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 15px;
+            }
+
+            .game-wrapper {
+                height: 350px;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="/" class="logo">CountMasters.space</a>
+                <nav>
+                    <ul class="nav-links">
+                        <li><a href="#game">Play Game</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#how-to-play">How to Play</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <section class="hero">
+                <h1>Count Masters</h1>
+                <p class="hero-subtitle">Build your crowd, overcome obstacles, and dominate the arena in this addictive stickman running game!</p>
+            </section>
+
+            <section id="game" class="game-container">
+                <div class="game-wrapper">
+                    <iframe 
+                        src="https://www.crazygames.com/embed/count-masters-stickman-games" 
+                        class="game-iframe"
+                        allowfullscreen>
+                    </iframe>
+                </div>
+            </section>
+
+            <section id="about" class="content-section">
+                <h2>About Count Masters</h2>
+                <div class="game-description">
+                    <p>Count Masters is an exhilarating stickman running game that combines strategy, timing, and quick reflexes. As you navigate through challenging levels, you'll collect colorful stickmen to build your crowd, multiply your numbers through strategic gates, and face off against obstacles that will test your decision-making skills.</p>
+                    
+                    <p>The game features intuitive controls that make it easy to pick up but challenging to master. Each level presents unique obstacles, from spinning hammers to deadly spikes, requiring you to think fast and choose the right path to preserve your crowd and reach the finish line with maximum numbers.</p>
+                    
+                    <p>With its vibrant graphics, smooth animations, and progressively challenging gameplay, Count Masters offers endless entertainment for players of all ages. Whether you're looking for a quick gaming session or hours of addictive fun, this game delivers an engaging experience that keeps you coming back for more.</p>
+                </div>
+            </section>
+
+            <section id="features" class="content-section">
+                <h2>Game Features</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">🏃</div>
+                        <div class="feature-title">Fast-Paced Action</div>
+                        <div class="feature-description">Experience heart-pounding running gameplay with smooth controls and responsive mechanics.</div>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">👥</div>
+                        <div class="feature-title">Crowd Building</div>
+                        <div class="feature-description">Collect stickmen and multiply your crowd through strategic gates and power-ups.</div>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🎯</div>
+                        <div class="feature-title">Strategic Gameplay</div>
+                        <div class="feature-description">Make split-second decisions to navigate obstacles and maximize your crowd size.</div>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🌟</div>
+                        <div class="feature-title">Progressive Levels</div>
+                        <div class="feature-description">Unlock new levels with increasing difficulty and unique challenges.</div>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">📱</div>
+                        <div class="feature-title">Cross-Platform</div>
+                        <div class="feature-description">Play seamlessly on desktop, tablet, and mobile devices.</div>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🎮</div>
+                        <div class="feature-title">Free to Play</div>
+                        <div class="feature-description">Enjoy unlimited gameplay without any downloads or registration required.</div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="how-to-play" class="content-section">
+                <h2>How to Play Count Masters</h2>
+                <div class="game-description">
+                    <p><strong>Basic Controls:</strong> Use your mouse or touch controls to guide your stickman crowd through the course. Move left and right to navigate around obstacles and collect additional stickmen.</p>
+                    
+                    <p><strong>Collect & Multiply:</strong> Gather blue stickmen scattered throughout the level to grow your crowd. Pass through multiplication gates to significantly increase your numbers - choose wisely as some gates multiply while others subtract!</p>
+                    
+                    <p><strong>Avoid Obstacles:</strong> Watch out for spinning hammers, spikes, and other deadly traps that can reduce your crowd size. Time your movements carefully to minimize losses.</p>
+                    
+                    <p><strong>Reach the Finish:</strong> Navigate through all obstacles and reach the finish line with as many stickmen as possible. The more you have, the higher your score and the better your chances of advancing to the next level.</p>
+                    
+                    <p><strong>Pro Tips:</strong> Look ahead to plan your route, prioritize survival over collection when facing difficult obstacles, and remember that sometimes taking a longer but safer path pays off in the end!</p>
+                </div>
+            </section>
+
+            <section class="cta-section">
+                <div class="cta-title">Ready to Master the Count?</div>
+                <div class="cta-description">Jump into the action and see how large you can grow your stickman army!</div>
+                <a href="#game" class="play-button">Play Now</a>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div>&copy; 2024 CountMasters.space. All rights reserved.</div>
+                <ul class="footer-links">
+                    <li><a href="/privacy">Privacy Policy</a></li>
+                    <li><a href="/terms">Terms of Service</a></li>
+                    <li><a href="/contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
